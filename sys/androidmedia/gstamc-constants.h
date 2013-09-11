@@ -96,7 +96,6 @@ enum
   COLOR_TI_FormatYUV420PackedSemiPlanar = 0x7f000100,
   COLOR_QCOM_FormatYUV420SemiPlanar = 0x7fa30c00,
   COLOR_QCOM_FormatYUV420PackedSemiPlanar64x32Tile2m8ka = 0x7fa30c03,
-  COLOR_QCOM_FormatYUV420PackedSemiPlanar32m = 0x7fa30c04,
   /* From hardware/ti/omap4xxx/domx/omx_core/inc/OMX_TI_IVCommon.h */
   COLOR_TI_FormatYUV420PackedSemiPlanarInterlaced = 0x7f000001
 };
