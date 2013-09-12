@@ -36,6 +36,7 @@
 #include <gst/audio/audio.h>
 #include <string.h>
 
+#include <hybris/media/media_compatibility_layer.h>
 #include <hybris/media/media_codec_layer.h>
 #include <hybris/media/media_codec_list.h>
 #include <hybris/media/media_format_layer.h>
@@ -1799,7 +1800,7 @@ plugin_init (GstPlugin * plugin)
 
   GST_DEBUG_CATEGORY_INIT (gst_amc_debug, "amc", 0, "android-media-codec");
 
-  gst_plugin_add_dependency_simple (plugin, NULL, "/etc", "media_codecs.xml",
+  gst_plugin_add_dependency_simple (plugin, NULL, "/system/etc", "media_codecs.xml",
       GST_PLUGIN_DEPENDENCY_FLAG_NONE);
 
   /* Set this to TRUE to allow registering decoders that have
@@ -1809,6 +1810,10 @@ plugin_init (GstPlugin * plugin)
   ignore = g_getenv ("GST_AMC_IGNORE_UNKNOWN_COLOR_FORMATS");
   if (ignore && strcmp (ignore, "yes") == 0)
     ignore_unknown_color_formats = TRUE;
+
+  /* Check if the media compat layer is available */
+  if (!media_compat_check_availability())
+    return FALSE;
 
   if (!scan_codecs (plugin))
     return FALSE;
