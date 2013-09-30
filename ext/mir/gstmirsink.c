@@ -275,7 +275,7 @@ create_session (void)
   session = malloc (sizeof *session);
 
   session->properties = ua_ui_session_properties_new ();
-  ua_ui_session_properties_set_type (session->properties, U_SYSTEM_SESSION);
+  ua_ui_session_properties_set_type (session->properties, U_USER_SESSION);
   session->session = ua_ui_session_new_with_properties (session->properties);
   if (!session->session)
     GST_WARNING ("Failed to start new Ubuntu Application API session");
